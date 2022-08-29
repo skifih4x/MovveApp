@@ -13,6 +13,9 @@
 		006EF32A28BBF2E200A761EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006EF32828BBF2E200A761EA /* Main.storyboard */; };
 		006EF32C28BBF2E300A761EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 006EF32B28BBF2E300A761EA /* Assets.xcassets */; };
 		006EF32F28BBF2E300A761EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006EF32D28BBF2E300A761EA /* LaunchScreen.storyboard */; };
+		008D3C9728BD449A006280EB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D3C9628BD449A006280EB /* NetworkManager.swift */; };
+		008D3C9928BD5227006280EB /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D3C9828BD5227006280EB /* ContentModel.swift */; };
+		008D3C9B28BD5479006280EB /* TvShowTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D3C9A28BD5479006280EB /* TvShowTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		006EF32B28BBF2E300A761EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		006EF32E28BBF2E300A761EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		006EF33028BBF2E300A761EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		008D3C9628BD449A006280EB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		008D3C9828BD5227006280EB /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		008D3C9A28BD5479006280EB /* TvShowTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +43,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		005EA54328BC169800A07830 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				006EF32228BBF2E200A761EA /* AppDelegate.swift */,
+				006EF32428BBF2E200A761EA /* SceneDelegate.swift */,
+				006EF33028BBF2E300A761EA /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		005EA54428BC169C00A07830 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				006EF32628BBF2E200A761EA /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		005EA54528BC16A200A07830 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				006EF32828BBF2E200A761EA /* Main.storyboard */,
+				006EF32D28BBF2E300A761EA /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		005EA54628BC16A500A07830 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				006EF32B28BBF2E300A761EA /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		005EA54728BC16DC00A07830 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				008D3C9828BD5227006280EB /* ContentModel.swift */,
+				008D3C9A28BD5479006280EB /* TvShowTask.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		005EA54828BC16E600A07830 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				008D3C9628BD449A006280EB /* NetworkManager.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		006EF31628BBF2E200A761EA = {
 			isa = PBXGroup;
 			children = (
@@ -56,13 +114,12 @@
 		006EF32128BBF2E200A761EA /* MovveApp */ = {
 			isa = PBXGroup;
 			children = (
-				006EF32228BBF2E200A761EA /* AppDelegate.swift */,
-				006EF32428BBF2E200A761EA /* SceneDelegate.swift */,
-				006EF32628BBF2E200A761EA /* ViewController.swift */,
-				006EF32828BBF2E200A761EA /* Main.storyboard */,
-				006EF32B28BBF2E300A761EA /* Assets.xcassets */,
-				006EF32D28BBF2E300A761EA /* LaunchScreen.storyboard */,
-				006EF33028BBF2E300A761EA /* Info.plist */,
+				005EA54828BC16E600A07830 /* Services */,
+				005EA54728BC16DC00A07830 /* Model */,
+				005EA54328BC169800A07830 /* App */,
+				005EA54428BC169C00A07830 /* Controller */,
+				005EA54528BC16A200A07830 /* View */,
+				005EA54628BC16A500A07830 /* Resources */,
 			);
 			path = MovveApp;
 			sourceTree = "<group>";
@@ -138,7 +195,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				008D3C9728BD449A006280EB /* NetworkManager.swift in Sources */,
+				008D3C9B28BD5479006280EB /* TvShowTask.swift in Sources */,
 				006EF32728BBF2E200A761EA /* ViewController.swift in Sources */,
+				008D3C9928BD5227006280EB /* ContentModel.swift in Sources */,
 				006EF32328BBF2E200A761EA /* AppDelegate.swift in Sources */,
 				006EF32528BBF2E200A761EA /* SceneDelegate.swift in Sources */,
 			);
@@ -289,7 +349,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9FSXFWG34;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovveApp/Info.plist;
+				INFOPLIST_FILE = MovveApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +377,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9FSXFWG34;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovveApp/Info.plist;
+				INFOPLIST_FILE = MovveApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
