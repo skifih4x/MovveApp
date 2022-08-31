@@ -8,7 +8,9 @@
 import UIKit
 
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-   
+    
+    var delegate: MyCellDelegate?
+    
     static let identifier = "CollectionTableViewCell"
     
     static func nib() -> UINib {
@@ -50,5 +52,12 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: 300)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print(models[indexPath.row].id!)
+            collectionView.deselectItem(at: indexPath, animated: true)
+        delegate?.cellWasPressed()
     }
 }

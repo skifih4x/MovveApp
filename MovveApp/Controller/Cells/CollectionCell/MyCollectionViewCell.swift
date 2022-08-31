@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol MyCellDelegate {
+    func cellWasPressed()
+}
 class MyCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var myLabel: UILabel!

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004782AA28C01636005D65E4 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004782A928C01636005D65E4 /* DetailsViewController.swift */; };
 		006EF32328BBF2E200A761EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EF32228BBF2E200A761EA /* AppDelegate.swift */; };
 		006EF32528BBF2E200A761EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EF32428BBF2E200A761EA /* SceneDelegate.swift */; };
 		006EF32728BBF2E200A761EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EF32628BBF2E200A761EA /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		004782A928C01636005D65E4 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		006EF31F28BBF2E200A761EA /* MovveApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovveApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		006EF32228BBF2E200A761EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		006EF32428BBF2E200A761EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				005EA54428BC169C00A07830 /* Controller */,
 				005EA54528BC16A200A07830 /* View */,
 				005EA54628BC16A500A07830 /* Resources */,
+				004782A928C01636005D65E4 /* DetailsViewController.swift */,
 			);
 			path = MovveApp;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			files = (
 				008D3C9728BD449A006280EB /* NetworkManager.swift in Sources */,
 				008D3C9B28BD5479006280EB /* TvShowTask.swift in Sources */,
+				004782AA28C01636005D65E4 /* DetailsViewController.swift in Sources */,
 				326C556728BFF3B100871262 /* MyCollectionViewCell.swift in Sources */,
 				006EF32728BBF2E200A761EA /* ViewController.swift in Sources */,
 				326C556128BFF34400871262 /* CollectionTableViewCell.swift in Sources */,

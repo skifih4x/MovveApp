@@ -1,12 +1,19 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MyCellDelegate {
+    func cellWasPressed() {
+        performSegue(withIdentifier: "cellid", sender: nil)
+    }
+    
     
     @IBOutlet var table : UITableView!
     
-    var models = [Model]()
-
+    var characters: ContentTask? {
+        didSet {
+            table.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -14,11 +21,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.delegate = self
         table.dataSource = self
         
-        models.append(Model(text: "First", imageName: "Image_1"))
-        models.append(Model(text: "Second", imageName: "Image_2"))
-        models.append(Model(text: "Third", imageName: "Image_3"))
-        models.append(Model(text: "Forth", imageName: "Image_4"))
-
+        
+        NetworkManager.shared.fetchMovie(urlString: Link.movieUrlApi.rawValue) { result in
+            switch result {
+            case .success(let result1):
+                self.characters = result1
+            case .failure(let error):
+                print("хер", error)
+            }
+        }
     }
     
     //Tableview
@@ -29,7 +40,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: CollectionTableViewCell.identifier, for: indexPath) as! CollectionTableViewCell
-        cell.configure(with: models)
+        if let movie = characters?.results {
+        cell.configure(with: movie)
+            cell.delegate = self
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -39,8 +53,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 }
 
-struct Model {
-    let text: String
-    let imageName: String
-}
 
