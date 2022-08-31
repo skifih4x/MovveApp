@@ -10,6 +10,7 @@ import Foundation
 
 struct TvTask: Decodable {
     let results: [ResultsTv]
+    
 }
 
 struct ResultsTv: Decodable {

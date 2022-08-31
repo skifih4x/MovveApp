@@ -15,14 +15,14 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         return UINib(nibName: "CollectionTableViewCell", bundle: nil)
     }
 
-    func configure(with models: [Model]) {
+    func configure(with models: [Results]) {
         self.models = models
         collectionView.reloadData()
     }
     
     @IBOutlet var collectionView: UICollectionView!
     
-    var models = [Model]()
+    var models = [Results]()
     
     override func awakeFromNib() {
         super.awakeFromNib()

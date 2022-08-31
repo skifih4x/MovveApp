@@ -25,9 +25,16 @@ class MyCollectionViewCell: UICollectionViewCell {
     
     }
     
-    public func configure(with model: Model) {
-        self.myLabel.text = model.text
-        self.myImageView.image = UIImage(named: model.imageName)
+    public func configure(with model: Results) {
+        self.myLabel.text = model.title
+        DispatchQueue.global().async {
+            guard let url = URL(string: "https://image.tmdb.org/t/p/original\(model.poster_path ?? "")" ) else {return}
+            guard let imageData = try? Data(contentsOf: url) else {return}
+            DispatchQueue.main.async {
+                self.myImageView.image = UIImage(data: imageData)
+            }
+            print(model.id!)
+        }
     }
 
 }
