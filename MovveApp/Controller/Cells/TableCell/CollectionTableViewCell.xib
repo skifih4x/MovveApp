@@ -49,6 +49,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="OdN-EU-tmv" id="8vT-K1-Ctf"/>
+                <outlet property="label" destination="TKF-ZK-LDB" id="4aM-hP-qLg"/>
             </connections>
             <point key="canvasLocation" x="214.49275362318843" y="96.428571428571431"/>
         </tableViewCell>

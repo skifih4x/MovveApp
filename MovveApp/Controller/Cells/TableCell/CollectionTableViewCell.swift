@@ -22,7 +22,14 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         collectionView.reloadData()
     }
     
+    
+    @IBOutlet weak var label: UILabel!
+    
     @IBOutlet var collectionView: UICollectionView!
+    
+    func setLabel(text: String) {
+        label.text = text
+    }
     
     var models = [Results]()
     

@@ -35,6 +35,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //Tableview
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
@@ -44,8 +48,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.configure(with: movie)
             cell.delegate = self
         }
+        
+        switch indexPath.section {
+        case 0: cell.setLabel(text: "Popular Movie")
+        case 1: cell.setLabel(text: "TV Shows")
+        case 2: cell.setLabel(text: "Continue Watching")
+        default: break
+        }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 350
     }
