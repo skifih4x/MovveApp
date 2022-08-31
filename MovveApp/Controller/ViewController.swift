@@ -6,7 +6,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         performSegue(withIdentifier: "cellid", sender: nil)
     }
     
-    
+    //
     @IBOutlet var table : UITableView!
     
     var characters: ContentTask? {
