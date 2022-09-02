@@ -7,22 +7,36 @@
 
 import UIKit
 
+protocol CollectionViewTableViewCellDelegate: AnyObject {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionTableViewCell, viewModel: TitlePreviewViewModel)
+}
+
+protocol MyCellDelegate {
+    func cellWasPressed()
+}
+
 class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var delegate: MyCellDelegate?
-    
+    var delegateDetail: CollectionViewTableViewCellDelegate?
+
     static let identifier = "CollectionTableViewCell"
     
     static func nib() -> UINib {
         return UINib(nibName: "CollectionTableViewCell", bundle: nil)
     }
-
-    func configure(with models: [Results]) {
-        self.models = models
-        collectionView.reloadData()
+    
+    var models = [Results]()
+    var modelsTv = [ResultsTv]()
+    
+    func configuremovie(with models1: [Results]) {
+        models = models1
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        
     }
-    
-    
+
     @IBOutlet weak var label: UILabel!
     
     @IBOutlet var collectionView: UICollectionView!
@@ -31,18 +45,18 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         label.text = text
     }
     
-    var models = [Results]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionView.register(MyCollectionViewCell.nib(), forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -52,19 +66,57 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         return models.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
         cell.configure(with: models[indexPath.row])
+        cell.myLabelTv.text = models[indexPath.row].name
+        cell.myLabelReliseTv.text = models[indexPath.row].first_air_date
+
         return cell
     }
+    
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 300)
+        return CGSize(width: 200, height: 350)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        collectionView.deselectItem(at: indexPath, animated: true)
+//        delegate?.cellWasPressed()
         print(models[indexPath.row].id!)
-            collectionView.deselectItem(at: indexPath, animated: true)
-        delegate?.cellWasPressed()
+        
+        let modelmovie = models[indexPath.row]
+        guard let titleName = modelmovie.name ?? modelmovie.title else {
+            return
+        }
+        NetworkManager.shared.fetchMovie(urlString: Link.movieUrlApi.rawValue) { [weak self] result in
+            switch result {
+            case .success(let movieApi):
+                let mode = self?.models[indexPath.row]
+                guard let titleOverview = mode?.overview else {
+                     return
+                }
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                let viewModel = TitlePreviewViewModel(title: titleName, image: mode?.poster_path ?? "", titleOverview: titleOverview)
+                
+                
+                self?.delegateDetail?.collectionViewTableViewCellDidTapCell(strongSelf, viewModel: viewModel)
+                
+                
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+
     }
+    
+    
 }

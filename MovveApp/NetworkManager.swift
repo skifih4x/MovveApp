@@ -21,7 +21,7 @@ struct NetworkManager {
         
         static var shared = NetworkManager()
         
-        func fetchMovie(urlString: String, completion: @escaping( Result<ContentTask, NetworkError> ) -> Void )  {
+        func fetchMovie(urlString: String, completion: @escaping( Result<[Results], NetworkError> ) -> Void )  {
 
             guard let url = URL(string: urlString) else { return }
             
@@ -36,7 +36,7 @@ struct NetworkManager {
                 do {
                     let movie = try JSONDecoder().decode(ContentTask.self, from: data)
                     DispatchQueue.main.async {
-                        completion(.success(movie))
+                        completion(.success(movie.results))
                     }
                 } catch {
                     completion(.failure(.decodingError))
@@ -44,7 +44,7 @@ struct NetworkManager {
             }.resume()
         }
         
-        func fetchTv(urlString: String, completion: @escaping( Result<TvTask, NetworkError> ) -> Void) {
+        func fetchTv(urlString: String, completion: @escaping( Result<[ResultsTv], NetworkError> ) -> Void) {
             
             guard let url = URL(string: urlString) else { return }
             
@@ -59,7 +59,7 @@ struct NetworkManager {
                 do {
                     let tvShow = try JSONDecoder().decode(TvTask.self, from: data)
                     DispatchQueue.main.async {
-                        completion(.success(tvShow))
+                        completion(.success(tvShow.results))
                     }
                 } catch {
                     print(error.localizedDescription, "[e]")
