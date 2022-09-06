@@ -2,9 +2,8 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MyCellDelegate {
-    func cellWasPressed() {
-    }
-    let sectionTitles = ["Popular movie", "Popular tvshow", "Popular upcomming"]
+    func cellWasPressed() {}
+    let sectionTitles = ["Popular movie", "Popular tv"]
     
     @IBOutlet var table : UITableView!
     override func viewDidLoad() {
@@ -13,8 +12,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.register(CollectionTableViewCell.nib(), forCellReuseIdentifier: CollectionTableViewCell.identifier)
         table.delegate = self
         table.dataSource = self
+        
     }
-
+    var result: Results?
     //Tableview
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -30,11 +30,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = table.dequeueReusableCell(withIdentifier: CollectionTableViewCell.identifier, for: indexPath) as! CollectionTableViewCell
         cell.delegate = self
         cell.delegateDetail = self
+        cell.backgroundColor = .black
+        
         switch indexPath.section {
         case 0:
             NetworkManager.shared.fetchMovie(urlString: Link.movieUrlApi.rawValue) { result in
                 switch result {
-                    
                 case .success(let movie):
                     cell.configuremovie(with: movie)
                 case .failure(let error):
@@ -61,7 +62,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 350
     }
     
+    
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+         
         sectionTitles[section]
     }
     
@@ -71,21 +74,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         header.textLabel?.font = .systemFont(ofSize: 30, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
         header.textLabel?.textColor = .red
+        view.tintColor = .black
         
     }
+    
      func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
          30
     }
-    
+
 }
 
 extension ViewController: CollectionViewTableViewCellDelegate {
+
     func collectionViewTableViewCellDidTapCell(_ cell: CollectionTableViewCell, viewModel: TitlePreviewViewModel) {
-        performSegue(withIdentifier: "cellid", sender: nil)
         DispatchQueue.main.async  {
-            let vc = TitlePreviewViewController()
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+            let _ = vc.view
             vc.configure(with: viewModel)
-//            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

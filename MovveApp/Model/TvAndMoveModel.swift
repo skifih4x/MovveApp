@@ -21,6 +21,7 @@ struct Results: Codable {
     let release_date: String?
     let first_air_date: String?
     let poster_path: String
+    let genre_ids: [Int]
 }
 
 enum Link: String {

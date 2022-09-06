@@ -43,30 +43,7 @@ struct NetworkManager {
                 }
             }.resume()
         }
-        
-        func fetchTv(urlString: String, completion: @escaping( Result<[ResultsTv], NetworkError> ) -> Void) {
-            
-            guard let url = URL(string: urlString) else { return }
-            
-            URLSession.shared.dataTask(with: url) { data, _, error in
-                
-                guard let data = data else {
-                    completion(.failure(.invalidURL))
-                    print(error?.localizedDescription ?? "no tvShow")
-                    return
-                }
-                
-                do {
-                    let tvShow = try JSONDecoder().decode(TvTask.self, from: data)
-                    DispatchQueue.main.async {
-                        completion(.success(tvShow.results))
-                    }
-                } catch {
-                    print(error.localizedDescription, "[e]")
-                    completion(.failure(.decodingError))
-                }
-            }.resume()
-        }
+
     }
 
 }

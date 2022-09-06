@@ -29,21 +29,25 @@ class MyCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         myImageView.layer.cornerRadius = 20
-    
+        
     }
     
     public func configure(with model: Results) {
         myLabelMovie.text = model.title
         myLabelReliseMovie.text = model.release_date
         
-        guard let url = URL(string: "https://image.tmdb.org/t/p/original\(model.poster_path)" ) else {return}
-        DispatchQueue.global().async {
-            guard let url = URL(string: "https://image.tmdb.org/t/p/original\(url)" ) else {return}
-            guard let imageData = try? Data(contentsOf: url) else {return}
-            DispatchQueue.main.async {
-                self.myImageView.image = UIImage(data: imageData)
-            }
+        guard let url = URL(string: "https://image.tmdb.org/t/p/original\(model.poster_path)") else {
+            return
         }
+        myImageView?.kf.setImage(with: url)
+//        guard let url = URL(string: "https://image.tmdb.org/t/p/original\(model.poster_path)" ) else {return}
+//        DispatchQueue.global().async {
+//            guard let url = URL(string: "https://image.tmdb.org/t/p/original\(url)" ) else {return}
+//            guard let imageData = try? Data(contentsOf: url) else {return}
+//            DispatchQueue.main.async {
+//                self.myImageView.image = UIImage(data: imageData)
+//            }
+//        }
 
     }
 

@@ -19,7 +19,7 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     
     var delegate: MyCellDelegate?
     var delegateDetail: CollectionViewTableViewCellDelegate?
-
+    
     static let identifier = "CollectionTableViewCell"
     
     static func nib() -> UINib {
@@ -27,16 +27,15 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     }
     
     var models = [Results]()
-    var modelsTv = [ResultsTv]()
+    
     
     func configuremovie(with models1: [Results]) {
         models = models1
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        
     }
-
+    
     @IBOutlet weak var label: UILabel!
     
     @IBOutlet var collectionView: UICollectionView!
@@ -52,6 +51,7 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -64,6 +64,7 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return models.count
+        print(models.count)
     }
     
     
@@ -72,7 +73,7 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
         cell.configure(with: models[indexPath.row])
         cell.myLabelTv.text = models[indexPath.row].name
         cell.myLabelReliseTv.text = models[indexPath.row].first_air_date
-
+        
         return cell
     }
     
@@ -84,39 +85,40 @@ class CollectionTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-//        delegate?.cellWasPressed()
-        print(models[indexPath.row].id!)
         
+        
+        collectionView.deselectItem(at: indexPath, animated: true)
         let modelmovie = models[indexPath.row]
         guard let titleName = modelmovie.name ?? modelmovie.title else {
             return
         }
+        
         NetworkManager.shared.fetchMovie(urlString: Link.movieUrlApi.rawValue) { [weak self] result in
             switch result {
-            case .success(let movieApi):
+            case .success(_):
+                
                 let mode = self?.models[indexPath.row]
                 guard let titleOverview = mode?.overview else {
-                     return
+                    return
                 }
                 guard let strongSelf = self else {
                     return
                 }
-                
-                let viewModel = TitlePreviewViewModel(title: titleName, image: mode?.poster_path ?? "", titleOverview: titleOverview)
-                
-                
+                let viewModel = TitlePreviewViewModel(
+                    title: titleName,
+                    image: mode?.poster_path ?? "",
+                    titleOverview: titleOverview,
+                    genre_ids: mode!.genre_ids,
+                    release: (mode?.release_date ?? mode?.first_air_date)!,
+                    rating: (mode?.vote_average)!,
+                    id: (mode?.id)!
+                )
                 self?.delegateDetail?.collectionViewTableViewCellDidTapCell(strongSelf, viewModel: viewModel)
-                
-                
-                
                 
             case .failure(let error):
                 print(error)
             }
         }
-
+        
     }
-    
-    
 }

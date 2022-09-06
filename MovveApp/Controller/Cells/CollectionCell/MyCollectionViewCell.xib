@@ -21,10 +21,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aja-bq-1np" userLabel="poster">
-                                <rect key="frame" x="-4" y="0.0" width="196" height="225"/>
+                                <rect key="frame" x="-4" y="0.0" width="196" height="231.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="225" id="aqr-Wl-5gw"/>
-                                    <constraint firstAttribute="width" constant="179" id="cj0-hA-KK7"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -33,9 +32,8 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="IIR-kk-s2D" userLabel="movieTitle">
-                                <rect key="frame" x="0.0" y="227" width="192" height="42"/>
+                                <rect key="frame" x="0.0" y="233.5" width="192" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19.5" id="FL5-C4-51o"/>
                                     <constraint firstAttribute="height" constant="42" id="orb-HA-AHq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -43,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123213" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="w3Z-H6-fU4" userLabel="tv">
-                                <rect key="frame" x="0.0" y="238" width="192" height="41"/>
+                                <rect key="frame" x="0.0" y="244.5" width="192" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="00d-1x-w2Z"/>
                                 </constraints>
@@ -51,19 +49,23 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Premiere Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="z0z-PZ-gXg" userLabel="premiereDate">
-                                <rect key="frame" x="3" y="277" width="186" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Premiere Date" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="z0z-PZ-gXg" userLabel="premiereDate">
+                                <rect key="frame" x="3" y="283.5" width="186" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14.5" id="Alr-So-PAu"/>
                                     <constraint firstAttribute="height" constant="14.5" id="nBf-Uf-9TT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="321313" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.55000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="kou-oQ-hFV" userLabel="tvpremiereDate">
-                                <rect key="frame" x="3" y="282" width="189" height="15"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <rect key="frame" x="3" y="282.5" width="189" height="14.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14.5" id="0c7-pN-4r0"/>
+                                    <constraint firstAttribute="height" constant="14.5" id="sBp-NS-yRs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
